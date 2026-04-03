@@ -1,0 +1,269 @@
+.plan-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(12, 14, 17, 0.96);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  z-index: 60;
+  animation: plan-enter 0.4s ease-out;
+  overflow: hidden;
+}
+
+@keyframes plan-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Ambient glow */
+.plan-ambient {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  width: 250px;
+  height: 250px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(180, 140, 255, 0.12) 0%, transparent 70%);
+  animation: ambient-breathe 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes ambient-breathe {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+  50% { transform: translate(-50%, -50%) scale(1.4); opacity: 0.7; }
+}
+
+/* ── Timeline ── */
+.plan-timeline {
+  position: relative;
+  z-index: 1;
+  padding: 18px 24px 10px;
+  flex-shrink: 0;
+}
+
+.plan-timeline-track {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+}
+
+.plan-phase-pip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 80px;
+  flex-shrink: 0;
+}
+
+.pip-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  border: 2px solid var(--border);
+  background: var(--bg-tertiary);
+  color: var(--text-muted);
+  transition: all 0.4s ease-out;
+}
+
+.plan-phase-pip.active .pip-icon {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+  color: var(--accent);
+  box-shadow: 0 0 16px var(--accent-glow);
+  animation: pip-glow 2s ease-in-out infinite;
+}
+
+.plan-phase-pip.done .pip-icon {
+  border-color: var(--green);
+  background: var(--green-glow);
+  color: var(--green);
+}
+
+@keyframes pip-glow {
+  0%, 100% { box-shadow: 0 0 16px var(--accent-glow); }
+  50% { box-shadow: 0 0 28px var(--accent-glow); }
+}
+
+.pip-label {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  transition: color 0.3s;
+}
+
+.plan-phase-pip.active .pip-label { color: var(--accent); }
+.plan-phase-pip.done .pip-label { color: var(--text-secondary); }
+
+/* Connector line between pips */
+.pip-line {
+  width: 40px;
+  height: 2px;
+  background: var(--border);
+  margin-top: 18px; /* center with pip-icon (36px / 2) */
+  flex-shrink: 0;
+  transition: background 0.3s;
+}
+
+.pip-line.done {
+  background: var(--accent);
+}
+
+/* ── Active phase verb ── */
+.plan-active {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 6px 24px 14px;
+  flex-shrink: 0;
+}
+
+.plan-active-icon {
+  font-size: 16px;
+  color: var(--accent);
+}
+
+.plan-active-icon.pulsing {
+  animation: icon-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes icon-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+.plan-active-verb {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  font-family: var(--font-sans);
+}
+
+/* ── Content ── */
+.plan-content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 24px 16px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.plan-section {
+  margin-bottom: 16px;
+}
+
+.plan-section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.plan-section-icon {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.plan-section.active .plan-section-icon,
+.plan-section.done .plan-section-icon {
+  color: var(--accent);
+}
+
+.plan-section-label {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+.plan-section.active .plan-section-label { color: var(--accent); }
+
+.plan-section-check {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--green);
+  background: var(--green-glow);
+  padding: 1px 6px;
+  border-radius: var(--radius);
+  margin-left: auto;
+}
+
+.plan-section-text {
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.plan-cursor {
+  display: inline-block;
+  width: 6px;
+  height: 13px;
+  background: var(--accent);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 0.5s step-end infinite;
+}
+
+/* ── Progress ── */
+.plan-progress {
+  height: 2px;
+  background: var(--bg-tertiary);
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.plan-progress-bar {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.5s ease-out;
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.plan-footer {
+  position: relative;
+  z-index: 1;
+  padding: 5px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 9px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ── Create phase: StreamOverlay takes over fully ── */
+.plan-stream-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+
+.plan-stream-wrapper .stream-overlay {
+  animation: none;
+}

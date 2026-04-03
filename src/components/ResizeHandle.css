@@ -1,0 +1,29 @@
+.resize-handle {
+  width: 5px;
+  background: var(--bg-secondary);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  cursor: col-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.resize-handle:hover {
+  background: var(--bg-elevated);
+}
+
+.resize-handle:hover .resize-handle-grip {
+  opacity: 0.6;
+}
+
+.resize-handle-grip {
+  width: 1px;
+  height: 24px;
+  background: var(--text-muted);
+  border-radius: 1px;
+  opacity: 0.2;
+  transition: opacity 0.15s;
+}

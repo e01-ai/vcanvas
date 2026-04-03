@@ -1,0 +1,387 @@
+/* ── Provider Modal Overlay ── */
+.pm-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(6, 8, 10, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: fade-in 0.15s ease-out;
+}
+
+.pm-modal {
+  width: 520px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 16px 64px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+/* ── Header ── */
+.pm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.pm-title {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+.pm-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 2px 6px;
+  line-height: 1;
+  transition: color 0.15s;
+}
+.pm-close:hover { color: var(--text-primary); }
+
+/* ── Body ── */
+.pm-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+/* ── Provider Cards ── */
+.pm-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pm-card {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: var(--bg-primary);
+}
+.pm-card:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-tertiary);
+}
+.pm-card.active {
+  border-color: rgba(74, 158, 142, 0.35);
+  background: rgba(74, 158, 142, 0.04);
+}
+
+/* Card header */
+.pm-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.pm-card-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pm-card-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.pm-card-dot.set {
+  background: var(--orange);
+  box-shadow: 0 0 6px var(--orange-glow);
+}
+.pm-card-dot.active {
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.pm-card-name {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+.pm-card-active-badge {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 2px 8px;
+  border-radius: 3px;
+  border: 1px solid rgba(74, 158, 142, 0.2);
+}
+
+/* Key input row */
+.pm-card-key-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pm-key-input {
+  flex: 1;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 6px 10px;
+  outline: none;
+  transition: border-color 0.15s;
+  letter-spacing: 0.02em;
+}
+.pm-key-input:focus {
+  border-color: var(--accent);
+}
+.pm-key-input::placeholder {
+  color: var(--text-muted);
+}
+
+.pm-key-link {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  color: var(--text-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.15s;
+  flex-shrink: 0;
+}
+.pm-key-link:hover {
+  color: var(--accent);
+}
+
+/* Model selector (shown when card is active) */
+.pm-card-models {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.pm-model-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.12s;
+  letter-spacing: 0.03em;
+}
+.pm-model-btn:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+.pm-model-btn.selected {
+  background: var(--accent-dim);
+  border-color: rgba(74, 158, 142, 0.3);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Tag for custom provider */
+.pm-card-tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-muted);
+  background: var(--bg-tertiary);
+  padding: 1px 6px;
+  border-radius: 2px;
+  border: 1px solid var(--border);
+  letter-spacing: 0.04em;
+}
+
+/* Endpoint row */
+.pm-card-endpoint-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.pm-endpoint-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  flex-shrink: 0;
+}
+
+/* Model search */
+.pm-model-search-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.pm-model-search {
+  flex: 1;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 5px 8px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.pm-model-search:focus {
+  border-color: var(--accent);
+}
+.pm-model-search::placeholder {
+  color: var(--text-muted);
+}
+
+.pm-fetch-status {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.pm-fetch-error {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--red);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Manual model ID input */
+.pm-manual-btn {
+  border-style: dashed !important;
+  color: var(--text-muted) !important;
+}
+.pm-manual-btn:hover {
+  color: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+
+.pm-manual-row {
+  display: flex;
+  gap: 4px;
+  width: 100%;
+}
+
+.pm-manual-input {
+  flex: 1;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 5px 8px;
+  outline: none;
+}
+.pm-manual-input:focus {
+  border-color: var(--accent);
+}
+.pm-manual-input::placeholder {
+  color: var(--text-muted);
+}
+
+.pm-manual-go {
+  font-size: 9px !important;
+  padding: 3px 10px !important;
+}
+
+/* Custom model active indicator */
+.pm-custom-model-active {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-muted);
+  padding: 4px 0;
+  width: 100%;
+}
+.pm-custom-model-id {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.pm-vision-tag {
+  font-size: 8px;
+  font-weight: 700;
+  color: var(--cyan);
+  background: var(--cyan-glow);
+  padding: 1px 4px;
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+}
+
+/* ── Footer ── */
+.pm-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-tertiary);
+}
+
+.pm-footer-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.pm-footer-provider {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.pm-footer-sep {
+  color: var(--text-muted);
+}
+
+.pm-footer-model {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.pm-footer-actions {
+  display: flex;
+  gap: 6px;
+}

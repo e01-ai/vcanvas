@@ -1,0 +1,22 @@
+.canvas-wrapper {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* Excalidraw requires a container with explicit dimensions.
+   Since we're in a flex column, use absolute positioning to fill. */
+.canvas-wrapper > div:first-child {
+  position: absolute !important;
+  inset: 0 !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+/* Hide Excalidraw library button and hamburger menu */
+.canvas-wrapper .library-button,
+.canvas-wrapper [class*="library-menu"],
+.canvas-wrapper .App-menu_top__left .dropdown-menu-button {
+  display: none !important;
+}

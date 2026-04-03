@@ -1,0 +1,23 @@
+{
+  "name": "vcanvas",
+  "version": "1.0.0",
+  "description": "A visual canvas playground for vision-language models. Draw, describe, generate.",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:gh": "VCANVAS_BASE=/vcanvas/ vite build",
+    "preview": "vite preview"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@excalidraw/excalidraw": "^0.18.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "html2canvas": "^1.4.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.3"
+  }
+}
