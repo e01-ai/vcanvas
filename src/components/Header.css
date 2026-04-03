@@ -125,6 +125,18 @@
   color: var(--text-secondary);
 }
 
+/* GitHub link */
+.header-gh-link {
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+  transition: color 0.15s;
+  padding: 4px;
+}
+.header-gh-link:hover {
+  color: var(--text-primary);
+}
+
 /* What is this button */
 .what-is-this-btn {
   font-size: 10px !important;
