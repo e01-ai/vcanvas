@@ -4,6 +4,10 @@ A visual canvas playground for vision-language models. Draw sketches, describe w
 
 BYOK (Bring Your Own Key). No backend. Runs entirely in the browser.
 
+![VCanvas screenshot](screenshot/sc.png)
+
+> A demo recording is available at [`screenshot/rec.mp4`](screenshot/rec.mp4).
+
 ## How it works
 
 1. **Draw** — Sketch wireframes, paste screenshots, drop reference images onto an Excalidraw canvas
