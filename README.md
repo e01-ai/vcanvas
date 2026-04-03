@@ -82,6 +82,10 @@ src/
     app.css                   — Layout, overlays
 ```
 
+## Acknowledgments
+
+Built on [Excalidraw](https://github.com/excalidraw/excalidraw) — the open-source virtual whiteboard that powers the drawing canvas. Excalidraw is licensed under MIT.
+
 ## License
 
 MIT
