@@ -125,16 +125,27 @@
   color: var(--text-secondary);
 }
 
-/* GitHub link */
-.header-gh-link {
+/* GitHub button */
+.header-gh-btn {
   display: flex;
   align-items: center;
-  color: var(--text-muted);
-  transition: color 0.15s;
-  padding: 4px;
+  gap: 6px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-tertiary);
+  transition: all 0.15s;
 }
-.header-gh-link:hover {
+.header-gh-btn:hover {
   color: var(--text-primary);
+  border-color: var(--border-hover);
+  background: var(--bg-elevated);
 }
 
 /* What is this button */
